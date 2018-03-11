@@ -14,7 +14,10 @@ twitter = Twython(
     access_token_secret
 )
 
-message = "Hello world - here's picture!"
+message = "Python is awesome!"
 
-with open('twython-01.jpg', 'rb') as photo:
-    twitter.update_status_with_media(status=message, media=photo)
+photo = open('./assets/i-love-python.jpg', 'rb')
+
+response = twitter.upload_media(media=photo)
+
+twitter.update_status(status=message, media_ids=[response['media_id']])
